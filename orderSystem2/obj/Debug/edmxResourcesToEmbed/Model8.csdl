@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrderSystemDBModel8" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="myFavorite">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="myFav_product_id" Type="Int32" Nullable="false" />
+    <Property Name="myFav_user_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK_myFavorite_user" FromRole="myFavorite" ToRole="user" />
+    <NavigationProperty Name="productData" Relationship="OrderSystemDBModel8.FK_myFavorite_productData" FromRole="myFavorite" ToRole="productData" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="orderDateTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ClientAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClientPhone" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK_order_user" FromRole="order" ToRole="user" />
+  </EntityType>
+  <EntityType Name="orderLine">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderLine_user_id" Type="Int32" Nullable="false" />
+    <Property Name="product_id" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="orderDateTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="productData" Relationship="Self.FK_orderLine_productData" FromRole="orderLine" ToRole="productData" />
+  </EntityType>
+  <EntityType Name="productData">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ImageTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="orderLine" Relationship="Self.FK_orderLine_productData" FromRole="productData" ToRole="orderLine" />
+    <NavigationProperty Name="myFavorite" Relationship="OrderSystemDBModel8.FK_myFavorite_productData" FromRole="productData" ToRole="myFavorite" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phone" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <NavigationProperty Name="myFavorite" Relationship="Self.FK_myFavorite_user" FromRole="user" ToRole="myFavorite" />
+    <NavigationProperty Name="order" Relationship="Self.FK_order_user" FromRole="user" ToRole="order" />
+  </EntityType>
+  <Association Name="FK_myFavorite_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="myFavorite" Type="Self.myFavorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="myFavorite">
+        <PropertyRef Name="myFav_user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_order_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="order" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderLine_productData">
+    <End Role="productData" Type="Self.productData" Multiplicity="1" />
+    <End Role="orderLine" Type="Self.orderLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productData">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orderLine">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OrderSystemDBEntities8" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="myFavorite" EntityType="Self.myFavorite" />
+    <EntitySet Name="order" EntityType="Self.order" />
+    <EntitySet Name="orderLine" EntityType="Self.orderLine" />
+    <EntitySet Name="productData" EntityType="Self.productData" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="FK_myFavorite_user" Association="Self.FK_myFavorite_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="myFavorite" EntitySet="myFavorite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_order_user" Association="Self.FK_order_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="order" EntitySet="order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderLine_productData" Association="Self.FK_orderLine_productData">
+      <End Role="productData" EntitySet="productData" />
+      <End Role="orderLine" EntitySet="orderLine" />
+    </AssociationSet>
+    <AssociationSet Name="FK_myFavorite_productData" Association="OrderSystemDBModel8.FK_myFavorite_productData">
+      <End Role="productData" EntitySet="productData" />
+      <End Role="myFavorite" EntitySet="myFavorite" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_myFavorite_productData">
+    <End Type="OrderSystemDBModel8.productData" Role="productData" Multiplicity="1" />
+    <End Type="OrderSystemDBModel8.myFavorite" Role="myFavorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productData">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="myFavorite">
+        <PropertyRef Name="myFav_product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

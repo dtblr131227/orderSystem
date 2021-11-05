@@ -1,0 +1,17 @@
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\orderSystem2.exe.config
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\orderSystem2.exe
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\orderSystem2.pdb
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.csproj.AssemblyReference.cache
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.Form1.resources
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.Properties.Resources.resources
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.csproj.GenerateResource.cache
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.csproj.CoreCompileInputs.cache
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.exe
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.pdb
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\EntityFramework.dll
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\EntityFramework.SqlServer.dll
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\EntityFramework.xml
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\bin\Debug\EntityFramework.SqlServer.xml
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.csproj.CopyComplete
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.Form2.resources
+D:\LU\23-\全端\期中專題\orderSystem2\orderSystem2\obj\Debug\orderSystem2.Form3.resources
